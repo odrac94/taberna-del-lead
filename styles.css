@@ -3,3 +3,26 @@
     margin: 0;
     padding: 0;
 }
+.contenedor {
+    width: 100%;
+    max-width: 1920px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 43.75% 56.25%;
+    gap: 0;
+    margin: 0 auto;
+}
+.columna {
+    width: 100%;
+}
+.personaje__img {
+    width: 100%;
+    height: 270px;
+    background-image: url('./img/rebecca.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.imagen img {
+    width: 100%;
+}

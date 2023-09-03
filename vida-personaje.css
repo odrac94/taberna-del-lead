@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --color-verde: #4E8397;
+    --color-morado: #845EC2;
+    --color-negro: #262626;
+    --color-texto: #D5CABD;
+}
+html {
+    font-size: 62.5%
+}
+.personaje__info {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+}
+.personaje__nivel {
+    position: absolute;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    align-self: center;
+    width: 60px;
+    height: 60px;
+    background-color: var(--color-morado);
+    box-shadow: 0px 3px 6px 0px rgba(0,0,0,0.50);
+    border: 5px solid var(--color-verde);
+    border-radius: 100%;
+    color: var(--color-texto);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    z-index: 99;
+}
+.personaje__vida {
+    position: relative;
+    align-self: center;
+    width: 300px;
+    height: 30px;
+    background-color: var(--color-negro);
+    border: 2px solid var(--color-verde);
+    border-radius: 20px;
+}
+#vida {
+    display: block;
+    width: 90%;
+    height: 100%;
+    background-color: var(--color-verde);
+    border-radius: 20px;
+    color: var(--color-texto);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.5;
+}
+.personaje__nombre {
+    position: relative;
+    width: 100%;
+}
+#nombre {
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1;
+}
