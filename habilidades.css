@@ -1,0 +1,40 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --color-verde: #4E8397;
+    --color-morado: #845EC2;
+    --color-negro: #262626;
+    --color-texto: #D5CABD;
+    --fuente-principal: 'Merriweather', serif;
+    --fuente-secundaria: 'Acme', sans-serif;
+}
+html {
+    font-size: 62.5%
+}
+
+.habilidades {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    width: 200px; /* Ancho del contenedor */
+    grid-gap: 10px; /* Espacio entre las columnas */
+}
+#fuerza, #destreza, #constitucion, #inteligencia, #carisma {
+    display: flex;
+    gap: 10px;
+}
+.icon {
+    color: var(--color-verde);
+    font-size: 4rem;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+.valor {
+    color: var(--color-texto);
+    font-family: var(--fuente-principal);
+    font-size: 4rem;
+    font-weight: 600;
+    align-self: center;
+}

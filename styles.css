@@ -15,9 +15,10 @@
 .columna {
     width: 100%;
 }
+
 .personaje__img {
     width: 100%;
-    height: 270px;
+    height: 250px;
     background-image: url('./img/rebecca.jpg');
     background-size: cover;
     background-position: center;
@@ -25,4 +26,5 @@
 }
 .imagen img {
     width: 100%;
+    height: auto;
 }
