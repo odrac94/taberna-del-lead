@@ -30,6 +30,7 @@ html {
     font-size: 4rem;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
+    text-align: center;
 }
 .valor {
     color: var(--color-texto);

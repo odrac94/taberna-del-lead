@@ -1,12 +1,25 @@
+:root {
+    --color-verde: #4E8397;
+    --color-morado: #845EC2;
+    --color-negro: #262626;
+    --color-texto: #D5CABD;
+    --fuente-principal: 'Merriweather', serif;
+    --fuente-secundaria: 'Acme', sans-serif;
+}
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+html {
+    font-size: 62.5%
+}
+body {
+    overflow: hidden;
+}
 .contenedor {
     width: 100%;
     max-width: 1920px;
-    height: 100%;
     display: grid;
     grid-template-columns: 43.75% 56.25%;
     gap: 0;
@@ -15,16 +28,139 @@
 .columna {
     width: 100%;
 }
-
+/* DIAPOSITIVA */
+.diapositiva {
+    position: relative;
+    width: 100%;
+}
+.diapositiva__img {
+    position: relative;
+    width: 100%;
+}
+.diapositiva__img img {
+    position: relative;
+    width: 100%;
+}
 .personaje__img {
+    position: relative;
     width: 100%;
     height: 250px;
-    background-image: url('./img/rebecca.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
-.imagen img {
+.img {
     width: 100%;
-    height: auto;
+    height: 100%; /* Esto mantendrá la relación de aspecto del contenedor */
+    overflow: hidden; /* Oculta cualquier contenido que desborde el contenedor */
+    position: relative; /* Para que los elementos absolutos se posicionen dentro de este contenedor */
+}
+
+.img img {
+    width: 100%; /* Opcional: escala la imagen al 100% del ancho del contenedor */
+    height: 100%; /* Esto mantendrá la relación de aspecto de la imagen y llenará el contenedor */
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el contenedor sin deformarla */
+    object-position: center; /* Opcional: posiciona la imagen en el centro del contenedor */
+    position: absolute; /* Posiciona la imagen dentro del contenedor */
+    top: 0; /* Opcional: alinea la imagen en la parte superior del contenedor */
+    left: 0; /* Opcional: alinea la imagen en la parte izquierda del contenedor */
+}
+
+/* HUD PERSONAJE */
+.personaje {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 0;
+    padding: 0;
+}
+.contenedor__hud {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+.nivel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 50px;
+    height: 50px;
+    display: flex; /* Activa el modo flex */
+    justify-content: center; /* Alinea horizontalmente al centro */
+    align-items: center; /* Alinea verticalmente al centro */
+    padding: 10px;
+    color: var(--color-texto);
+    background-color: var(--color-morado);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--color-verde);
+    border-radius: 100%;
+    font-family: var(--fuente-principal);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+}
+.vida__contenedor {
+    width: 100%;
+    height: 35px;
+    background-color: var(--color-negro);
+    border: 3px solid var(--color-verde);
+    border-radius: 50px;
+    margin: 0;
+    padding: 0;
+}
+.vida {
+    display: flex; /* Activa el modo flex */
+    justify-content: center; /* Alinea horizontalmente al centro */
+    align-items: center; /* Alinea verticalmente al centro */
+    width: 90%;
+    height: 100%;
+    color: var(--color-texto);
+    background-color: #4E8397;
+    border-radius: 50px;
+    font-family: var(--fuente-principal);
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+.nombre__personaje {
+    width: 100%;
+}
+.nombre__personaje h1 {
+    color: var(--color-texto);
+    font-family: var(--fuente-secundaria);
+    font-size: 3rem;
+}
+
+/* HABILIDADES */
+.habilidades {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
+    width: 200px; /* Ancho del contenedor */
+    grid-gap: 10px; /* Espacio entre las columnas */
+}
+#fuerza, #destreza, #constitucion, #inteligencia, #carisma {
+    display: flex;
+    gap: 10px;
+}
+.icon {
+    color: var(--color-verde);
+    font-size: 4rem;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    text-align: center;
+}
+.valor {
+    color: var(--color-texto);
+    font-family: var(--fuente-secundaria);
+    font-size: 4rem;
+    font-weight: 600;
+    align-self: center;
 }
