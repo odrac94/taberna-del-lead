@@ -109,7 +109,7 @@ function retrocederImg() {
           locacion.src = locacionesImg[locacionActual];
           locacion.style.opacity = 1;
           actualizarIndicadores();
-        }, 500);
+        }, 200);
     }
 }
 
@@ -122,7 +122,7 @@ function avanzarImg() {
           locacion.src = locacionesImg[locacionActual];
           locacion.style.opacity = 1; // Establece la opacidad a 1 (imagen visible)
           actualizarIndicadores();
-      }, 500); // Espera 500 ms antes de cambiar la imagen (ajusta el tiempo según desees)
+      }, 200); // Espera 500 ms antes de cambiar la imagen (ajusta el tiempo según desees)
   }
 }
 
