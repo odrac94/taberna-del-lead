@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="./styles.css">
@@ -11,138 +12,24 @@
     <section class="contenedor">
         <!-- PERSONAJES -->
         <div id="contenedor-personajes" class="columna">
-
-            <!-- <div class="personaje">
-                <div class="img">
-                    <img src="./img/rebecca.jpg" alt="">
-                </div>
-                <div class="personaje__hud">
-                    <div class="contenedor__hud">
-                        <div class="nivel">
-                            <span>1</span>
-                        </div>
-                        <div class="vida__contenedor">
-                            <span class="vida">20</span>
-                        </div>
-                    </div>
-                    <div class="nombre__personaje">
-                        <h2>Odrac</h2>
-                        <h3>Elfo mago</h3>
-                    </div>
-                </div>
-
-
-                <div class="habilidades">
-                    <div id="fuerza" class="columna">
-                        <div class="icon">
-                            
-                        </div>
-                        <div class="valor">
-                            2
-                        </div>
-                    </div>
-                    <div id="destreza" class="columna">
-                        <div class="icon">
-                            
-                        </div>
-                        <div class="valor">
-                            2
-                        </div>
-                    </div>
-                    <div id="constitucion" class="columna">
-                        <div class="icon">
-                            
-                        </div>
-                        <div class="valor">
-                            2
-                        </div>
-                    </div>
-                    <div id="inteligencia" class="columna">
-                        <div class="icon">
-                            
-                        </div>
-                        <div class="valor">
-                            2
-                        </div>
-                    </div>
-                    <div id="carisma" class="columna">
-                        <div class="icon">
-                            
-                        </div>
-                        <div class="valor">
-                            2
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-            <!-- MAS PERSONAJES -->
         </div>
 
-        <!-- IMAGEN -->
+        <!-- LOCACIONES -->
         <div class="columna">
             <div class="diapositiva">
                 <div id="locaciones" class="diapositiva__img">
-                    <img id="imgLocacion" src="https://drive.google.com/uc?id=16svb_UuI5s2rTXtgA3qxBSZuVi_QUZFd" alt="">
+                    <img id="imgLocacion" src="https://i.imgur.com/8zxPCVv.png" alt="">
                 </div>
             </div>
+            <!-- BOTONES -->
             <div class="flechas__contenedor">
                 <div id="retroceder" class="icon izquierda"><p></p></div>
                 <div id="avanzar" class="icon derecha"></div>
             </div>
+            <div id="indicadores">
+            </div>
         </div>
     </section>
     <script src="./main.js"></script>
-
-
-    <script>
-        // Obtén el elemento contenedor de los indicadores
-const indicadoresContainer = document.querySelector('.indicadores');
-
-// Crea los indicadores automáticamente
-locacionesImg.forEach((imagen, index) => {
-    const indicador = document.createElement('div');
-    indicador.classList.add('indicador');
-    indicador.dataset.index = index;
-    indicadoresContainer.appendChild(indicador);
-});
-
-// Función para actualizar los indicadores
-function actualizarIndicadores() {
-    const indicadores = document.querySelectorAll('.indicador');
-    indicadores.forEach((indicador, index) => {
-        if (index === locacionActual) {
-            indicador.classList.add('activo');
-        } else {
-            indicador.classList.remove('activo');
-        }
-    });
-}
-
-// ...
-
-// Llama a la función para mostrar los indicadores iniciales
-actualizarIndicadores();
-
-// ...
-
-// En las funciones avanzarImg y retrocederImg, después de cambiar la imagen actual, llama a la función actualizarIndicadores para actualizar los indicadores visuales.
-function avanzarImg() {
-    if (locacionActual < locacionesImg.length - 1) {
-        locacionActual++;
-        locacion.src = locacionesImg[locacionActual];
-        actualizarIndicadores(); // Actualiza los indicadores
-    }
-}
-
-function retrocederImg() {
-    if (locacionActual > 0) {
-        locacionActual--;
-        locacion.src = locacionesImg[locacionActual];
-        actualizarIndicadores(); // Actualiza los indicadores
-    }
-}
-
-    </script>
 </body>
 </html>

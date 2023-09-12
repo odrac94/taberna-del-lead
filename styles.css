@@ -21,6 +21,7 @@ body {
     margin: 0;
 }
 .contenedor {
+    position: relative;
     width: 100%;
     max-width: 1920px;
     display: grid;
@@ -54,9 +55,11 @@ body {
     object-position: center;
     font-size: 0;
 }
-.inactive {
-    display: none;
+#imgLocacion {
+    background-color: #262626;
+    transition: opacity 0.5s ease-in-out;
 }
+
 /* PERSONAJE */
 .personaje {
     position: relative;
@@ -235,12 +238,41 @@ body {
     gap: 10px;
 }
 .icon.izquierda, .icon.derecha {
-    color: #B09FCC;
+    color: rgba(255, 255, 255, .7);
     font-size: 4rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     cursor: pointer;
+    user-select: none;
     transition: ease-in-out .2s;
 }
 .icon.izquierda:hover, .icon.derecha:hover {
     color: var(--color-morado);
     transform: scale(1.5);
+}
+
+/* Indicadores */
+#indicadores {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.indicador {
+    position: relative;
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin: 0 5px; /* Espacio entre los indicadores */
+    cursor: pointer;
+    transition: ease-in-out .3s;
+}
+
+.indicador.activo {
+    position: relative;
+    background-color: var(--color-morado);
+    transform: scale(2);
+    box-shadow: var(--sombra);
 }

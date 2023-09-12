@@ -79,14 +79,15 @@ const iconosHabilidades = {
 
 // Array de locaciones
 const locacionesImg = [
-    'https://drive.google.com/uc?id=16svb_UuI5s2rTXtgA3qxBSZuVi_QUZFd',
-    'https://drive.google.com/uc?id=15v3P85LAUhjTCUVvExuo7z_Jg1YaOZ9P',
-    'https://drive.google.com/uc?id=1bMsuFJX2ewHmU4W3-RjKUFLNHEKrcn25',
-    'https://drive.google.com/uc?id=18lziqs6u0h-zFDNhphHgmk8ZYg83P8ew',
-    'https://drive.google.com/uc?id=1iQaN6oqSr3C-Zc_zcebYdhMZ9j10Bmtv',
-    'https://drive.google.com/uc?id=1h5P7gq9ydl0JdOs2VKOL7my2NPirMUWt',
-    'https://drive.google.com/uc?id=1uOTEPh3HERm6FD7lLANsJQwXPpM_j8JW'
-]
+  'https://i.imgur.com/8zxPCVv.png',
+  'https://i.imgur.com/jtLtkpK.png',
+  'https://i.imgur.com/YW0s3V3.png',
+  'https://i.imgur.com/oDWuqQu.png',
+  'https://i.imgur.com/gSGVLD5.png',
+  'https://i.imgur.com/YsF5OAU.png',
+  'https://i.imgur.com/PgdSsBw.png',
+  'https://i.imgur.com/Q0UQgmP.png'
+];
 
 // Variable para llevar un registro de la imagen actual
 let locacionActual = 0;
@@ -103,19 +104,26 @@ function retrocederImg() {
     if(locacionActual > 0) {
         // Decrementa el índice y establece la fuente (src) de la imagen actual
         locacionActual--;
-        locacion.src = locacionesImg[locacionActual];
+        locacion.style.opacity = 0;
+        setTimeout(() => {
+          locacion.src = locacionesImg[locacionActual];
+          locacion.style.opacity = 1;
+          actualizarIndicadores();
+        }, 500);
     }
 }
 
-
 // Función para avanzar
 function avanzarImg() {
-    // Verificar si no estamos en la última imagen
-    if(locacionActual < locacionesImg.length - 1) {
-        // Incrementa el indice y establece la fuente (src) de la imagen actual
-        locacionActual++;
-        locacion.src = locacionesImg[locacionActual];
-    }
+  if (locacionActual < locacionesImg.length - 1) {
+      locacionActual++;
+      locacion.style.opacity = 0; // Establece la opacidad a 0 (imagen invisible)
+      setTimeout(() => {
+          locacion.src = locacionesImg[locacionActual];
+          locacion.style.opacity = 1; // Establece la opacidad a 1 (imagen visible)
+          actualizarIndicadores();
+      }, 500); // Espera 500 ms antes de cambiar la imagen (ajusta el tiempo según desees)
+  }
 }
 
 // Asigna las funciones a los eventos clic en los botones
@@ -125,6 +133,31 @@ btnAvanzar.addEventListener('click', avanzarImg);
 // Muestra la primer imagen
 locacion.src = locacionesImg[locacionActual];
 
+// Indicadores
+const indicadoresContenedor = document.querySelector('#indicadores');
+
+// Crear indicadores automáticamente
+locacionesImg.forEach((imagen, index) => {
+  const indicador = document.createElement('div');
+  indicador.classList.add('indicador');
+  indicador.dataset.index = index;
+  indicadoresContenedor.appendChild(indicador);
+});
+
+// Función para actualizar los indicadores
+function actualizarIndicadores() {
+  const indicadores = document.querySelectorAll('.indicador');
+  indicadores.forEach((indicador, index) => {
+    if(index === locacionActual) {
+      indicador.classList.add('activo');
+    } else {
+      indicador.classList.remove('activo');
+    }
+  });
+}
+
+// Llama a la función para mostrar los indicadores iniciales
+actualizarIndicadores();
 
 //Obtener el contenedor donde se agregarán los personajes
 const contenedorPersonajes = document.getElementById('contenedor-personajes');
