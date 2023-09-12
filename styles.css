@@ -5,6 +5,8 @@
     --color-texto: #D5CABD;
     --fuente-principal: 'Merriweather', serif;
     --fuente-secundaria: 'Acme', sans-serif;
+    --sombra: 0px 10px 15px -3px rgba(0,0,0,0.1);
+    --text-sombra: 1px 1px 5px rgba(0, 0, 0, 0.18);
 }
 * {
     box-sizing: border-box;
@@ -15,7 +17,8 @@ html {
     font-size: 62.5%
 }
 body {
-    overflow: hidden;
+    /* overflow: hidden; */
+    margin: 0;
 }
 .contenedor {
     width: 100%;
@@ -26,25 +29,58 @@ body {
     margin: 0 auto;
 }
 .columna {
+    position: relative;
     width: 100%;
 }
 /* DIAPOSITIVA */
 .diapositiva {
     position: relative;
     width: 100%;
+    height: 100vh; /* Usa el 100% del alto de la pantalla */
+    font-size: 0;
 }
+
 .diapositiva__img {
     position: relative;
     width: 100%;
+    height: 100%;
 }
+
 .diapositiva__img img {
     position: relative;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    font-size: 0;
 }
-.personaje__img {
+.inactive {
+    display: none;
+}
+/* PERSONAJE */
+.personaje {
     position: relative;
     width: 100%;
-    height: 250px;
+    height: 25%;
+}
+.personaje::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+.personaje::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), 30%, transparent);
+    z-index: 1;
 }
 .img {
     width: 100%;
@@ -64,7 +100,7 @@ body {
 }
 
 /* HUD PERSONAJE */
-.personaje {
+.personaje__hud {
     position: absolute;
     top: 15px;
     left: 15px;
@@ -72,13 +108,14 @@ body {
     max-width: 400px;
     margin: 0;
     padding: 0;
+    z-index: 2;
 }
 .contenedor__hud {
     position: relative;
     display: flex;
     gap: 10px;
     width: 100%;
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
     padding: 0;
 }
 .nivel {
@@ -106,6 +143,7 @@ body {
     width: 100%;
     height: 35px;
     background-color: var(--color-negro);
+    box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
     border: 3px solid var(--color-verde);
     border-radius: 50px;
     margin: 0;
@@ -115,7 +153,7 @@ body {
     display: flex; /* Activa el modo flex */
     justify-content: center; /* Alinea horizontalmente al centro */
     align-items: center; /* Alinea verticalmente al centro */
-    width: 90%;
+    width: 100%;
     height: 100%;
     color: var(--color-texto);
     background-color: #4E8397;
@@ -128,23 +166,41 @@ body {
     padding: 0;
 }
 .nombre__personaje {
+    display: flex;
+    align-items: center;
+    gap: 5px;
     width: 100%;
 }
-.nombre__personaje h1 {
+.nombre__personaje h2 {
     color: var(--color-texto);
     font-family: var(--fuente-secundaria);
     font-size: 3rem;
+    line-height: 1;
+    text-shadow: var(--text-sombra);
+}
+.nombre__personaje h2::after {
+    content: ' | ';
+    font-size: 2rem;
+}
+.nombre__personaje h3 {
+    color: var(--color-morado);
+    font-family: var(--fuente-secundaria);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1;
+    text-shadow: var(--text-sombra);
 }
 
 /* HABILIDADES */
 .habilidades {
     position: absolute;
     top: 15px;
-    right: 15px;
+    right: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr; /* Dos columnas de igual ancho */
-    width: 200px; /* Ancho del contenedor */
+    width: calc(100px + 10px); /* Ancho del contenedor */
     grid-gap: 10px; /* Espacio entre las columnas */
+    z-index: 2;
 }
 #fuerza, #destreza, #constitucion, #inteligencia, #carisma {
     display: flex;
@@ -152,15 +208,39 @@ body {
 }
 .icon {
     color: var(--color-verde);
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
-    text-align: center;
+    text-align: left;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
-.valor {
+.valor p {
     color: var(--color-texto);
     font-family: var(--fuente-secundaria);
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 600;
+    text-align: left;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     align-self: center;
+}
+
+/* Locaciones */
+.flechas__contenedor {
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    right: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.icon.izquierda, .icon.derecha {
+    color: #B09FCC;
+    font-size: 4rem;
+    cursor: pointer;
+    transition: ease-in-out .2s;
+}
+.icon.izquierda:hover, .icon.derecha:hover {
+    color: var(--color-morado);
+    transform: scale(1.5);
 }

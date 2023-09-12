@@ -10,14 +10,13 @@
 <body>
     <section class="contenedor">
         <!-- PERSONAJES -->
-        <div class="columna">
-            <div class="personaje__img">
+        <div id="contenedor-personajes" class="columna">
+
+            <!-- <div class="personaje">
                 <div class="img">
                     <img src="./img/rebecca.jpg" alt="">
                 </div>
-
-                <!--HUD DEL PERSONAJE-->
-                <div class="personaje">
+                <div class="personaje__hud">
                     <div class="contenedor__hud">
                         <div class="nivel">
                             <span>1</span>
@@ -27,11 +26,12 @@
                         </div>
                     </div>
                     <div class="nombre__personaje">
-                        <h1>Odrac</h1>
+                        <h2>Odrac</h2>
+                        <h3>Elfo mago</h3>
                     </div>
                 </div>
 
-                <!-- HABILIDADES -->
+
                 <div class="habilidades">
                     <div id="fuerza" class="columna">
                         <div class="icon">
@@ -74,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- MAS PERSONAJES -->
         </div>
@@ -82,11 +82,67 @@
         <!-- IMAGEN -->
         <div class="columna">
             <div class="diapositiva">
-                <div class="diapositiva__img">
-                    <img src="./img/S3 - 2-3@2x.png" alt="">
+                <div id="locaciones" class="diapositiva__img">
+                    <img id="imgLocacion" src="https://drive.google.com/uc?id=16svb_UuI5s2rTXtgA3qxBSZuVi_QUZFd" alt="">
                 </div>
+            </div>
+            <div class="flechas__contenedor">
+                <div id="retroceder" class="icon izquierda"><p></p></div>
+                <div id="avanzar" class="icon derecha"></div>
             </div>
         </div>
     </section>
+    <script src="./main.js"></script>
+
+
+    <script>
+        // Obtén el elemento contenedor de los indicadores
+const indicadoresContainer = document.querySelector('.indicadores');
+
+// Crea los indicadores automáticamente
+locacionesImg.forEach((imagen, index) => {
+    const indicador = document.createElement('div');
+    indicador.classList.add('indicador');
+    indicador.dataset.index = index;
+    indicadoresContainer.appendChild(indicador);
+});
+
+// Función para actualizar los indicadores
+function actualizarIndicadores() {
+    const indicadores = document.querySelectorAll('.indicador');
+    indicadores.forEach((indicador, index) => {
+        if (index === locacionActual) {
+            indicador.classList.add('activo');
+        } else {
+            indicador.classList.remove('activo');
+        }
+    });
+}
+
+// ...
+
+// Llama a la función para mostrar los indicadores iniciales
+actualizarIndicadores();
+
+// ...
+
+// En las funciones avanzarImg y retrocederImg, después de cambiar la imagen actual, llama a la función actualizarIndicadores para actualizar los indicadores visuales.
+function avanzarImg() {
+    if (locacionActual < locacionesImg.length - 1) {
+        locacionActual++;
+        locacion.src = locacionesImg[locacionActual];
+        actualizarIndicadores(); // Actualiza los indicadores
+    }
+}
+
+function retrocederImg() {
+    if (locacionActual > 0) {
+        locacionActual--;
+        locacion.src = locacionesImg[locacionActual];
+        actualizarIndicadores(); // Actualiza los indicadores
+    }
+}
+
+    </script>
 </body>
 </html>
