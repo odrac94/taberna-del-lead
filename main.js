@@ -262,8 +262,14 @@ function actualizarEquipo() {
 
     const vidaSpan = document.createElement('span');
     vidaSpan.classList.add('vida');
-    vidaSpan.textContent = personaje.salud;
+    vidaSpan.textContent = `${personaje.salud}/20`;
 
+    // Calcular el ancho de la barra de vida
+    const valorMaximoVida = 20;
+    const anchoBarra = (personaje.salud / valorMaximoVida) * 100 + '%';
+    vidaSpan.style.width = anchoBarra;
+
+    // Agregar elementos a sus padres
     hudDiv.appendChild(contenedorHudDiv);
     contenedorHudDiv.appendChild(nivelDiv);
     contenedorHudDiv.appendChild(vidaContenedorDiv);

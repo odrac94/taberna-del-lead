@@ -1,8 +1,8 @@
 :root {
-    --color-verde: #4E8397;
-    --color-morado: #845EC2;
+    --color-principal: #3498DB;
+    --color-secundario: #9B59B6;
     --color-negro: #262626;
-    --color-texto: #D5CABD;
+    --color-texto: #CCCCCC;
     --fuente-principal: 'Merriweather', serif;
     --fuente-secundaria: 'Acme', sans-serif;
     --sombra: 0px 10px 15px -3px rgba(0,0,0,0.1);
@@ -144,9 +144,9 @@ body {
     align-items: center; /* Alinea verticalmente al centro */
     padding: 10px;
     color: var(--color-texto);
-    background-color: var(--color-morado);
+    background-color: var(--color-secundario);
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
-    border: 3px solid var(--color-verde);
+    border: 3px solid var(--color-principal);
     border-radius: 100%;
     font-family: var(--fuente-principal);
     font-size: 2rem;
@@ -158,7 +158,7 @@ body {
     height: 35px;
     background-color: var(--color-negro);
     box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.5);
-    border: 3px solid var(--color-verde);
+    border: 3px solid var(--color-principal);
     border-radius: 50px;
     margin: 0;
     padding: 0;
@@ -170,7 +170,7 @@ body {
     width: 100%;
     height: 100%;
     color: var(--color-texto);
-    background-color: #4E8397;
+    background-color: var(--color-principal);
     border-radius: 50px;
     font-family: var(--fuente-principal);
     font-size: 2rem;
@@ -182,6 +182,7 @@ body {
 .nombre__personaje {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 5px;
     width: 100%;
 }
@@ -197,12 +198,12 @@ body {
     font-size: 2rem;
 }
 .nombre__personaje h3 {
-    color: var(--color-morado);
+    color: var(--color-secundario);
     font-family: var(--fuente-secundaria);
     font-size: 1.8rem;
     font-weight: 600;
     line-height: 1;
-    text-shadow: var(--text-sombra);
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 1);
 }
 
 /* HABILIDADES */
@@ -221,7 +222,7 @@ body {
     gap: 10px;
 }
 .icon {
-    color: var(--color-verde);
+    color: var(--color-principal);
     font-size: 2.5rem;
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
@@ -257,7 +258,7 @@ body {
     transition: ease-in-out .2s;
 }
 .icon.izquierda:hover, .icon.derecha:hover {
-    color: var(--color-morado);
+    color: var(--color-secundario);
     transform: scale(1.5);
 }
 
@@ -283,7 +284,7 @@ body {
 
 .indicador.activo {
     position: relative;
-    background-color: var(--color-morado);
+    background-color: var(--color-secundario);
     transform: scale(2);
     box-shadow: var(--sombra);
 }
