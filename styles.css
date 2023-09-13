@@ -19,7 +19,7 @@ html {
     padding: 0;
 }
 body {
-    /* overflow: hidden; */
+    overflow: hidden;
     margin: 0;
     padding: 0;
 }
@@ -35,8 +35,13 @@ body {
 .columna {
     position: relative;
     width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
+}
+#contenedor-personajes {
+    display: flex;
+    flex-direction: column;
 }
 /* DIAPOSITIVA */
 .diapositiva {
@@ -70,6 +75,7 @@ body {
     position: relative;
     width: 100%;
     height: 25%;
+    flex: 1;
 }
 .personaje::after {
     position: absolute;
@@ -101,7 +107,7 @@ body {
     width: 100%; /* Opcional: escala la imagen al 100% del ancho del contenedor */
     height: 100%; /* Esto mantendrá la relación de aspecto de la imagen y llenará el contenedor */
     object-fit: cover; /* Ajusta la imagen para cubrir todo el contenedor sin deformarla */
-    object-position: center; /* Opcional: posiciona la imagen en el centro del contenedor */
+    object-position: top; /* Opcional: posiciona la imagen en el centro del contenedor */
     position: absolute; /* Posiciona la imagen dentro del contenedor */
     top: 0; /* Opcional: alinea la imagen en la parte superior del contenedor */
     left: 0; /* Opcional: alinea la imagen en la parte izquierda del contenedor */
@@ -299,7 +305,7 @@ body {
 }
 #equipo-1, #equipo-2 {
     position: relative;
-    bottom: 0;
+    bottom: -20px;
     width: 100%;
     height: 100%;
     background-position: center;
@@ -317,5 +323,9 @@ body {
     border-radius: 0 20px 0 0;
 }
 #equipo-1:hover, #equipo-2:hover {
+    bottom: 0;
     z-index: 2;
+}
+#equipo-1:active, #equipo-2:active {
+    transform: translateY(5px);
 }

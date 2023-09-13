@@ -12,58 +12,58 @@
 const personajeList = [
 [
   {
-    nivel: 1,
-    foto: './img/rebecca.jpg',
-    nombre: 'Andrés',
-    salud: 20,
-    raza: 'Gay',
+    nivel: 2,
+    foto: 'https://www.nowyouroll.com/wp-content/uploads/2020/07/Guia-de-picaro-DnD-5E.jpg',
+    nombre: 'Zenlagoz',
+    salud: 17,
+    raza: 'Elfo Ladrón',
     habilidades: {
-      fuerza: 2,
-      destreza: 2,
-      constitucion: 2,
+      fuerza: 3,
+      destreza: 4,
+      constitucion: 3,
       inteligencia: 2,
+      carisma: 3,
+    },
+  },
+  {
+    nivel: 2,
+    foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ryze_1.jpg',
+    nombre: 'Ronan Albaluz',
+    salud: 19,
+    raza: 'Humano Druida',
+    habilidades: {
+      fuerza: 3,
+      destreza: 3,
+      constitucion: 6,
+      inteligencia: 4,
       carisma: 2,
     },
   },
   {
     nivel: 2,
-    foto: 'https://images.ctfassets.net/swt2dsco9mfe/Ym9i1haRS4HsElvEa6SqS/604794ba06b9cef049fc141a4dc07513/dnd_home_lorecardv4.png?q=70&w=1342',
-    nombre: 'Oliver',
-    salud: 20,
-    raza: 'Elfo Mago',
+    foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Shyvana_1.jpg',
+    nombre: 'Elloren',
+    salud: 18,
+    raza: 'Dragonborns Druida',
     habilidades: {
-      fuerza: 2,
+      fuerza: 3,
       destreza: 2,
       constitucion: 2,
-      inteligencia: 2,
-      carisma: 2,
-    },
-  },
-  {
-    nivel: 4,
-    foto: 'https://s1.eestatic.com/2017/08/16/actualidad/actualidad_239489274_129989410_1706x960.jpg',
-    nombre: 'Stephanie',
-    salud: 20,
-    raza: 'Elfo gay',
-    habilidades: {
-      fuerza: 2,
-      destreza: 2,
-      constitucion: 2,
-      inteligencia: 2,
-      carisma: 2,
+      inteligencia: 4,
+      carisma: 3,
     },
   },
   {
     nivel: 2,
-    foto: 'https://cdn.mos.cms.futurecdn.net/Hv6uftXQZC4XRQx7QG33cF.jpg',
-    nombre: 'Rafa el rafael',
-    salud: 20,
-    raza: 'Elfo Mago',
+    foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Swain_0.jpg',
+    nombre: 'Arandor',
+    salud: 18,
+    raza: 'Humano Mago',
     habilidades: {
-      fuerza: 2,
-      destreza: 2,
+      fuerza: 3,
+      destreza: 4,
       constitucion: 2,
-      inteligencia: 2,
+      inteligencia: 3,
       carisma: 2,
     },
   },
@@ -71,44 +71,44 @@ const personajeList = [
 [
   {
   nivel: 1,
-  foto: './img/rebecca.jpg',
-  nombre: 'Paola',
+  foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Janna_45.jpg',
+  nombre: 'Krista',
   salud: 20,
-  raza: 'Elfa Druida',
+  raza: 'Elfo Druida',
   habilidades: {
     fuerza: 2,
     destreza: 2,
     constitucion: 2,
-    inteligencia: 2,
+    inteligencia: 3,
+    carisma: 5,
+  },
+},
+{
+  nivel: 1,
+  foto: 'https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt701ca0d74cad88e2/60ee0cf283f3965f5b9868b8/Ezreal_splash.jpg',
+  nombre: 'Alexandier',
+  salud: 20,
+  raza: 'Humano Mago',
+  habilidades: {
+    fuerza: 2,
+    destreza: 2,
+    constitucion: 3,
+    inteligencia: 5,
     carisma: 2,
   },
 },
 {
   nivel: 2,
-  foto: 'https://images.ctfassets.net/swt2dsco9mfe/Ym9i1haRS4HsElvEa6SqS/604794ba06b9cef049fc141a4dc07513/dnd_home_lorecardv4.png?q=70&w=1342',
-  nombre: 'Alexis',
-  salud: 20,
-  raza: 'Elfo Mago',
-  habilidades: {
-    fuerza: 2,
-    destreza: 2,
-    constitucion: 2,
-    inteligencia: 2,
-    carisma: 2,
-  },
-},
-{
-  nivel: 4,
-  foto: 'https://s1.eestatic.com/2017/08/16/actualidad/actualidad_239489274_129989410_1706x960.jpg',
+  foto: 'https://www.mobafire.com/images/champion/skins/landscape/brand-debonair-prestige-edition-762x.jpg',
   nombre: 'Odrac',
-  salud: 20,
+  salud: 18,
   raza: 'Elfo Mago',
   habilidades: {
     fuerza: 2,
     destreza: 2,
-    constitucion: 2,
-    inteligencia: 2,
-    carisma: 2,
+    constitucion: 3,
+    inteligencia: 5,
+    carisma: 4,
   },
 },
 ]];
@@ -199,98 +199,126 @@ indicadores.forEach((indicador, index) => {
   }
 });
 }
-
 // Llama a la función para mostrar los indicadores iniciales
 actualizarIndicadores();
+
+// Botones para cambiar de equipo
+let equipoFijado = 0;
+
+const btnEquipoUno = document.querySelector('#equipo-1');
+const btnEquipoDos = document.querySelector('#equipo-2');
+
+btnEquipoUno.addEventListener('click', cambiarEquipoUno);
+btnEquipoDos.addEventListener('click', cambiarEquipoDos);
+
+function cambiarEquipoUno() {
+  equipoFijado = 0;
+  actualizarEquipo();
+}
+function cambiarEquipoDos() {
+  equipoFijado = 1;
+  actualizarEquipo();
+}
 
 //Obtener el contenedor donde se agregarán los personajes
 const contenedorPersonajes = document.getElementById('contenedor-personajes');
 
-// Iterar a través de la lista de personajes y crear elementos para cada uno
-for (const personaje of personajeList[0]) {
-  const personajeDiv = document.createElement('div');
-  personajeDiv.classList.add('personaje');
+// Función para actualizar el equipo en la interfaz
+function actualizarEquipo() {
+  // Borrar los personajes existentes en la interfaz
+  contenedorPersonajes.innerHTML = '';
 
-  // Elementos para la imagen del personaje
-  const imgDiv = document.createElement('div');
-  imgDiv.classList.add('img');
+  // Obtiene el equipo actual
+  const equipoActual = personajeList[equipoFijado];
 
-  const img = document.createElement('img');
-  img.setAttribute('src', personaje.foto);
-  img. setAttribute('alt', 'Imagen de personaje');
+  // Iterar a través de la lista de personajes y crear elementos para cada uno
+  for (const personaje of equipoActual) {
+    const personajeDiv = document.createElement('div');
+    personajeDiv.classList.add('personaje');
 
-  imgDiv.appendChild(img);
+    // Elementos para la imagen del personaje
+    const imgDiv = document.createElement('div');
+    imgDiv.classList.add('img');
 
-  // Elementos del HUD del personaje
-  const hudDiv = document.createElement('div');
-  hudDiv.classList.add('personaje__hud');
+    const img = document.createElement('img');
+    img.setAttribute('src', personaje.foto);
+    img. setAttribute('alt', 'Imagen de personaje');
 
-  const contenedorHudDiv = document.createElement('div');
-  contenedorHudDiv.classList.add('contenedor__hud');
+    imgDiv.appendChild(img);
 
-  const nivelDiv = document.createElement('div');
-  nivelDiv.classList.add('nivel');
-  nivelDiv.innerHTML = `<p>${personaje.nivel}</p>`;
+    // Elementos del HUD del personaje
+    const hudDiv = document.createElement('div');
+    hudDiv.classList.add('personaje__hud');
 
-  const vidaContenedorDiv = document.createElement('div');
-  vidaContenedorDiv.classList.add('vida__contenedor');
+    const contenedorHudDiv = document.createElement('div');
+    contenedorHudDiv.classList.add('contenedor__hud');
 
-  const vidaSpan = document.createElement('span');
-  vidaSpan.classList.add('vida');
-  vidaSpan.textContent = personaje.salud;
+    const nivelDiv = document.createElement('div');
+    nivelDiv.classList.add('nivel');
+    nivelDiv.innerHTML = `<p>${personaje.nivel}</p>`;
 
-  hudDiv.appendChild(contenedorHudDiv);
-  contenedorHudDiv.appendChild(nivelDiv);
-  contenedorHudDiv.appendChild(vidaContenedorDiv);
-  vidaContenedorDiv.appendChild(vidaSpan);
+    const vidaContenedorDiv = document.createElement('div');
+    vidaContenedorDiv.classList.add('vida__contenedor');
 
-  // Nombre del personaje
-  const nombreDiv = document.createElement('div');
-  nombreDiv.classList.add('nombre__personaje');
+    const vidaSpan = document.createElement('span');
+    vidaSpan.classList.add('vida');
+    vidaSpan.textContent = personaje.salud;
 
-  const nombreH2 = document.createElement('h2');
-  nombreH2.textContent = personaje.nombre;
+    hudDiv.appendChild(contenedorHudDiv);
+    contenedorHudDiv.appendChild(nivelDiv);
+    contenedorHudDiv.appendChild(vidaContenedorDiv);
+    vidaContenedorDiv.appendChild(vidaSpan);
 
-  hudDiv.appendChild(nombreDiv);
-  nombreDiv.appendChild(nombreH2);
+    // Nombre del personaje
+    const nombreDiv = document.createElement('div');
+    nombreDiv.classList.add('nombre__personaje');
 
-  // Raza del personaje
-  const razaH3 = document.createElement('h3');
-  razaH3.textContent = personaje.raza;
+    const nombreH2 = document.createElement('h2');
+    nombreH2.textContent = personaje.nombre;
 
-  nombreDiv.appendChild(razaH3);
+    hudDiv.appendChild(nombreDiv);
+    nombreDiv.appendChild(nombreH2);
 
-  // Elementos de Habilidades
-  const habilidadesDiv = document.createElement('div');
-  habilidadesDiv.classList.add('habilidades');
+    // Raza del personaje
+    const razaH3 = document.createElement('h3');
+    razaH3.textContent = personaje.raza;
 
-  // Iterar a través de la lista de habilidad y crear elementos para cada uno
-  for(const habilidad in personaje.habilidades) {
-      const columnaDiv = document.createElement('div');
-      columnaDiv.id = habilidad;
-      columnaDiv.classList.add('columna');
+    nombreDiv.appendChild(razaH3);
 
-      const iconDiv = document.createElement('div');
-      iconDiv.classList.add('icon');
+    // Elementos de Habilidades
+    const habilidadesDiv = document.createElement('div');
+    habilidadesDiv.classList.add('habilidades');
 
-      // Obtén el icono correspondiente de acuerdo a la habilidad
-      iconDiv.textContent = iconosHabilidades[habilidad];
+    // Iterar a través de la lista de habilidad y crear elementos para cada uno
+    for(const habilidad in personaje.habilidades) {
+        const columnaDiv = document.createElement('div');
+        columnaDiv.id = habilidad;
+        columnaDiv.classList.add('columna');
 
-      const valorDiv = document.createElement('div');
-      valorDiv.classList.add('valor');
-      // valorDiv.textContent = personaje.habilidades[habilidad];
-      valorDiv.innerHTML = `<p>${personaje.habilidades[habilidad]}</p>`;
+        const iconDiv = document.createElement('div');
+        iconDiv.classList.add('icon');
 
-      columnaDiv.appendChild(iconDiv);
-      columnaDiv.appendChild(valorDiv);
-      habilidadesDiv.appendChild(columnaDiv);
+        // Obtén el icono correspondiente de acuerdo a la habilidad
+        iconDiv.textContent = iconosHabilidades[habilidad];
+
+        const valorDiv = document.createElement('div');
+        valorDiv.classList.add('valor');
+        // valorDiv.textContent = personaje.habilidades[habilidad];
+        valorDiv.innerHTML = `<p>${personaje.habilidades[habilidad]}</p>`;
+
+        columnaDiv.appendChild(iconDiv);
+        columnaDiv.appendChild(valorDiv);
+        habilidadesDiv.appendChild(columnaDiv);
+    }
+
+    // Agregar todos los elementos al div del personaje
+    personajeDiv.appendChild(imgDiv);
+    personajeDiv.appendChild(hudDiv);
+    personajeDiv.appendChild(habilidadesDiv);
+
+    // Agregar el div del personaje al contenedor principal
+    contenedorPersonajes.appendChild(personajeDiv);
   }
-
-  // Agregar todos los elementos al div del personaje
-  personajeDiv.appendChild(imgDiv);
-  personajeDiv.appendChild(hudDiv);
-  personajeDiv.appendChild(habilidadesDiv);
-
-  // Agregar el div del personaje al contenedor principal
-  contenedorPersonajes.appendChild(personajeDiv);
 }
+
+actualizarEquipo();
