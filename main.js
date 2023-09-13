@@ -29,7 +29,7 @@ const personajeList = [
     nivel: 2,
     foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ryze_1.jpg',
     nombre: 'Ronan Albaluz',
-    salud: 19,
+    salud: 15,
     raza: 'Humano Druida',
     habilidades: {
       fuerza: 3,
