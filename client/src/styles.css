@@ -319,11 +319,11 @@ body {
     cursor: pointer;
 }
 #equipo-1 {
-    background-image: url('https://arcaneeye.com/wp-content/uploads/2019/09/lost-mines-770x360.jpg');
+    background-image: url('./img/kda.jpg');
     border-radius: 20px 0 0 0;
 }
 #equipo-2 {
-    background-image: url('https://i.redd.it/6ni8qx4b1bb91.jpg');
+    background-image: url('./img/pentakill.jpg');
     border-radius: 0 20px 0 0;
 }
 #equipo-1:hover, #equipo-2:hover {

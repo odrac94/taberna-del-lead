@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+:root {
+    --color-verde: #4E8397;
+    --color-morado: #845EC2;
+    --color-negro: #262626;
+    --color-texto: #D5CABD;
+    --fuente-principal: 'Merriweather', serif;
+    --fuente-secundaria: 'Acme', sans-serif;
+}
+html {
+    font-size: 62.5%
+}
+body {
+    padding: 20px;
+}
+.personaje {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0;
+    padding: 0;
+}
+.contenedor__hud {
+    position: relative;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 0;
+}
+.nivel {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 0;
+    width: 70px;
+    height: 70px;
+    display: flex; /* Activa el modo flex */
+    justify-content: center; /* Alinea horizontalmente al centro */
+    align-items: center; /* Alinea verticalmente al centro */
+    padding: 10px;
+    color: var(--color-texto);
+    background-color: var(--color-morado);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+    border: 3px solid var(--color-verde);
+    border-radius: 100%;
+    font-family: var(--fuente-principal);
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1;
+}
+.vida__contenedor {
+    width: 100%;
+    height: 50px;
+    background-color: var(--color-negro);
+    border: 3px solid var(--color-verde);
+    border-radius: 50px;
+    margin: 0;
+    padding: 0;
+}
+.vida {
+    display: flex; /* Activa el modo flex */
+    justify-content: center; /* Alinea horizontalmente al centro */
+    align-items: center; /* Alinea verticalmente al centro */
+    width: 90%;
+    height: 100%;
+    color: var(--color-texto);
+    background-color: #4E8397;
+    border-radius: 50px;
+    font-family: var(--fuente-principal);
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+}
+.nombre__personaje {
+    width: 100%;
+}
+.nombre__personaje h1 {
+    color: var(--color-negro);
+    font-family: var(--fuente-secundaria);
+    font-size: 3.5rem;
+}

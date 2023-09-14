@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Taberna del Lead</title>
+</head>
+<body>
+    <section class="contenedor">
+        <!-- PERSONAJES -->
+        <div id="contenedor-personajes" class="columna">
+        </div>
+
+        <!-- LOCACIONES -->
+        <div class="columna">
+            <div class="diapositiva">
+                <div id="locaciones" class="diapositiva__img">
+                    <img id="imgLocacion" src="https://i.imgur.com/8zxPCVv.png" alt="">
+                </div>
+            </div>
+            <!-- BOTONES -->
+            <div class="flechas__contenedor">
+                <div id="retroceder" class="icon izquierda"><p></p></div>
+                <div id="avanzar" class="icon derecha"></div>
+            </div>
+            <div id="indicadores">
+            </div>
+        </div>
+        <!-- EQUIPOS -->
+        <div class="equipos">
+            <div class="equipos__columna">
+                <button id="equipo-1">
+                </button>
+            </div>
+            <div class="equipos__columna">
+                <button id="equipo-2">
+                </button>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="./server/main.js"></script>
+</body>
+</html>
