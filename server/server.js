@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
-const DATABASE_ID = 'your-database-id'; // Reemplaza con tu ID de base de datos
+const DATABASE_ID = '39699e926a6e47d8a6617485d8b46e38'; // Reemplaza con tu ID de base de datos
 
 const notion = new Client({ auth: NOTION_TOKEN });
 
