@@ -1,4 +1,4 @@
-// ARRAY DE STATS
+// Array de personajes
 const personajeList = [
 [
   {
@@ -123,6 +123,8 @@ const locacionesImg = [
 'https://i.imgur.com/Q0UQgmP.png'
 ];
 
+// SLIDER
+
 // Variable para llevar un registro de la imagen actual
 let locacionActual = 0;
 
@@ -192,7 +194,8 @@ indicadores.forEach((indicador, index) => {
 // Llama a la función para mostrar los indicadores iniciales
 actualizarIndicadores();
 
-// Botones para cambiar de equipo
+
+// BOTONES PARA CAMBIAR EQUIPO
 let equipoFijado = 0;
 
 const btnEquipoUno = document.querySelector('#equipo-1');
@@ -221,6 +224,8 @@ function actualizarEquipo() {
   // Obtiene el equipo actual
   const equipoActual = personajeList[equipoFijado];
 
+  // AGREGAR CONTENIDO DE LOS ARRAYS AL HTML
+  
   // Iterar a través de la lista de personajes y crear elementos para cada uno
   for (const personaje of equipoActual) {
     const personajeDiv = document.createElement('div');
