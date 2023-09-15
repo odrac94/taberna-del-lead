@@ -1,3 +1,4 @@
+
 // Array de personajes
 const personajeList = [
 [
@@ -323,3 +324,28 @@ function actualizarEquipo() {
 }
 
 actualizarEquipo();
+
+
+// Función para realizar la solicitud al servidor y obtener datos de Notion
+async function obtenerDatosDeNotion() {
+  console.log('Solicitud a Notion en proceso...')
+  try {
+    const response = await fetch('/notion-data'); // Ruta para obtener datos del servidor
+    if (!response.ok) {
+      throw new Error('No se pudo obtener la respuesta del servidor.');
+    }
+    const data = await response.json();
+
+    // Una vez que obtengas los datos de Notion, puedes actualizar tu personajeList aquí
+    // Por ejemplo, si data contiene un campo llamado "personajes", podrías hacer algo como:
+    // personajeList = data.personajes;
+
+    // Luego, actualiza la interfaz con los nuevos datos
+    actualizarEquipo();
+  } catch (error) {
+    console.error('Error al obtener datos de Notion:', error);
+  }
+}
+
+// Llamar a la función para obtener datos de Notion cuando sea necesario
+obtenerDatosDeNotion();
