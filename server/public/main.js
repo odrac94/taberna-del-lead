@@ -1,116 +1,32 @@
+let personajeList = []; // Inicialmente vacío, se llenará con los datos del servidor
 
-// Array de personajes
-const personajeList = [
-[
-  {
-    nivel: 2,
-    foto: 'https://www.nowyouroll.com/wp-content/uploads/2020/07/Guia-de-picaro-DnD-5E.jpg',
-    nombre: 'Zenlagoz',
-    salud: 17,
-    raza: 'Elfo Ladrón',
-    habilidades: {
-      fuerza: 3,
-      destreza: 4,
-      constitucion: 3,
-      inteligencia: 2,
-      carisma: 3,
-    },
-  },
-  {
-    nivel: 2,
-    foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Ryze_1.jpg',
-    nombre: 'Ronan Albaluz',
-    salud: 15,
-    raza: 'Humano Druida',
-    habilidades: {
-      fuerza: 3,
-      destreza: 3,
-      constitucion: 6,
-      inteligencia: 4,
-      carisma: 2,
-    },
-  },
-  {
-    nivel: 2,
-    foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Shyvana_1.jpg',
-    nombre: 'Elloren',
-    salud: 18,
-    raza: 'Dragonborns Druida',
-    habilidades: {
-      fuerza: 3,
-      destreza: 2,
-      constitucion: 2,
-      inteligencia: 4,
-      carisma: 3,
-    },
-  },
-  {
-    nivel: 2,
-    foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Swain_0.jpg',
-    nombre: 'Arandor',
-    salud: 18,
-    raza: 'Humano Mago',
-    habilidades: {
-      fuerza: 3,
-      destreza: 4,
-      constitucion: 2,
-      inteligencia: 3,
-      carisma: 2,
-    },
-  },
-],
-[
-  {
-  nivel: 1,
-  foto: 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Janna_45.jpg',
-  nombre: 'Krista',
-  salud: 20,
-  raza: 'Elfo Druida',
-  habilidades: {
-    fuerza: 2,
-    destreza: 2,
-    constitucion: 2,
-    inteligencia: 3,
-    carisma: 5,
-  },
-},
-{
-  nivel: 1,
-  foto: 'https://images.contentstack.io/v3/assets/blt187521ff0727be24/blt701ca0d74cad88e2/60ee0cf283f3965f5b9868b8/Ezreal_splash.jpg',
-  nombre: 'Alexandier',
-  salud: 20,
-  raza: 'Humano Mago',
-  habilidades: {
-    fuerza: 2,
-    destreza: 2,
-    constitucion: 3,
-    inteligencia: 5,
-    carisma: 2,
-  },
-},
-{
-  nivel: 2,
-  foto: 'https://www.mobafire.com/images/champion/skins/landscape/brand-debonair-prestige-edition-762x.jpg',
-  nombre: 'Odrac',
-  salud: 18,
-  raza: 'Elfo Mago',
-  habilidades: {
-    fuerza: 2,
-    destreza: 2,
-    constitucion: 3,
-    inteligencia: 5,
-    carisma: 4,
-  },
-},
-]];
+// Función para realizar la solicitud al servidor y obtener datos de Notion
+async function obtenerDatosDeNotion() {
+  console.log('Solicitud a Notion en proceso...');
+  try {
+    const response = await fetch('/notion-data'); // Ruta para obtener datos del servidor
+    if (!response.ok) {
+      throw new Error('No se pudo obtener la respuesta del servidor.');
+    }
+    const data = await response.json();
 
-const iconosHabilidades = {
-  fuerza: '',
-  destreza: '',
-  constitucion: '',
-  inteligencia: '',
-  carisma: ''
-};
+    // Asegúrate de que data sea un array antes de actualizar personajeList
+    if (Array.isArray(data)) {
+      personajeList = data;
+
+      // Llama a la función para actualizar la interfaz con los nuevos datos
+      actualizarEquipo();
+    } else {
+      console.error('Los datos obtenidos del servidor no son un array válido:', data);
+    }
+  } catch (error) {
+    console.error('Error al obtener datos de Notion:', error);
+  }
+}
+
+// Llamar a la función para obtener datos de Notion cuando sea necesario
+obtenerDatosDeNotion();
+
 
 // Array de locaciones
 const locacionesImg = [
@@ -125,7 +41,6 @@ const locacionesImg = [
 ];
 
 // SLIDER
-
 // Variable para llevar un registro de la imagen actual
 let locacionActual = 0;
 
@@ -225,7 +140,9 @@ function actualizarEquipo() {
   // Obtiene el equipo actual
   const equipoActual = personajeList[equipoFijado];
 
-  // AGREGAR CONTENIDO DE LOS ARRAYS AL HTML
+  // Verificar que equipoActual sea un array antes de intetar iterar
+  if (Array.isArray(equipoActual)) {
+   // AGREGAR CONTENIDO DE LOS ARRAYS AL HTML
   
   // Iterar a través de la lista de personajes y crear elementos para cada uno
   for (const personaje of equipoActual) {
@@ -312,7 +229,6 @@ function actualizarEquipo() {
         columnaDiv.appendChild(valorDiv);
         habilidadesDiv.appendChild(columnaDiv);
     }
-
     // Agregar todos los elementos al div del personaje
     personajeDiv.appendChild(imgDiv);
     personajeDiv.appendChild(hudDiv);
@@ -321,10 +237,12 @@ function actualizarEquipo() {
     // Agregar el div del personaje al contenedor principal
     contenedorPersonajes.appendChild(personajeDiv);
   }
-}
-
+} else {
+  // Si equipoActual no es un array, muestra un mensaje de error o realiza alguna otra acción apropiada.
+  console.error('El equipo actual no es un array válido:', equipoActual);
+} 
+};
 actualizarEquipo();
-
 
 // Función para realizar la solicitud al servidor y obtener datos de Notion
 async function obtenerDatosDeNotion() {
@@ -336,11 +254,10 @@ async function obtenerDatosDeNotion() {
     }
     const data = await response.json();
 
-    // Una vez que obtengas los datos de Notion, puedes actualizar tu personajeList aquí
-    // Por ejemplo, si data contiene un campo llamado "personajes", podrías hacer algo como:
-    // personajeList = data.personajes;
+    // Actualiza personajeList con los datos recibidos
+    personajeList = data;
 
-    // Luego, actualiza la interfaz con los nuevos datos
+    // Llama a la función para actualizar la interfaz con los nuevos datos
     actualizarEquipo();
   } catch (error) {
     console.error('Error al obtener datos de Notion:', error);
