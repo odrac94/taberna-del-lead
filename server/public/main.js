@@ -1,32 +1,50 @@
-let personajeList = []; // Inicialmente vacío, se llenará con los datos del servidor
+let personajeList = []; // Declara una variable para almacenar los datos
 
-// Función para realizar la solicitud al servidor y obtener datos de Notion
-async function obtenerDatosDeNotion() {
-  console.log('Solicitud a Notion en proceso...');
-  try {
-    const response = await fetch('/notion-data'); // Ruta para obtener datos del servidor
-    if (!response.ok) {
-      throw new Error('No se pudo obtener la respuesta del servidor.');
-    }
-    const data = await response.json();
+const iconosHabilidades = {
+  fuerza: '',
+  destreza: '',
+  constitucion: '',
+  inteligencia: '',
+  carisma: ''
+};
 
-    // Asegúrate de que data sea un array antes de actualizar personajeList
-    if (Array.isArray(data)) {
+document.addEventListener("DOMContentLoaded", function () {
+  // Realiza una solicitud AJAX para obtener el archivo JSON
+  fetch('/data.json') // Ruta donde se encuentra el archivo JSON en tu servidor
+    .then(response => response.json())
+    .then(data => {
+      // Almacena los datos en la variable personajeList
       personajeList = data;
 
-      // Llama a la función para actualizar la interfaz con los nuevos datos
+      // // Procesa y muestra los datos en la página web
+      // mostrarDatos(personajeList);
+
+      // Llama a la función para actualizar el equipo
       actualizarEquipo();
-    } else {
-      console.error('Los datos obtenidos del servidor no son un array válido:', data);
-    }
-  } catch (error) {
-    console.error('Error al obtener datos de Notion:', error);
-  }
-}
+    })
+    .catch(error => {
+      console.error('Error al obtener data.json:', error);
+    });
+});
 
-// Llamar a la función para obtener datos de Notion cuando sea necesario
-obtenerDatosDeNotion();
+// // Función para mostrar los datos en la página web
+// function mostrarDatos(data) {
+//   const datosContainer = document.getElementById('datos');
+//   datosContainer.innerHTML = ''; // Borra cualquier contenido existente en el contenedor
 
+//   // Verifica si 'data' es un array antes de procesarlo
+//   if (Array.isArray(data)) {
+//     // Itera a través de los datos y crea elementos para mostrarlos
+//     data.forEach(item => {
+//       const elemento = document.createElement('div');
+//       elemento.textContent = `equipo: ${item.equipo} Nombre: ${item.nombre}, Raza: ${item.raza}, Clase: ${item.clase}, fuerza: ${item.fuerza}, destreza: ${item.destreza}, constitucion: ${item.constitucion}, inteligencia: ${item.inteligencia}, carisma: ${item.carisma}`;
+//       datosContainer.appendChild(elemento);
+//     });
+//   } else {
+//     console.error('Los datos en data.json no son un array válido:', data);
+//     // Puedes mostrar un mensaje de error en el contenedor o realizar alguna otra acción apropiada aquí
+//   }
+// };
 
 // Array de locaciones
 const locacionesImg = [
@@ -67,16 +85,16 @@ function retrocederImg() {
 
 // Función para avanzar
 function avanzarImg() {
-if (locacionActual < locacionesImg.length - 1) {
-    locacionActual++;
-    locacion.style.opacity = 0; // Establece la opacidad a 0 (imagen invisible)
-    setTimeout(() => {
-        locacion.src = locacionesImg[locacionActual];
-        locacion.style.opacity = 1; // Establece la opacidad a 1 (imagen visible)
-        actualizarIndicadores();
-    }, 200); // Espera 500 ms antes de cambiar la imagen (ajusta el tiempo según desees)
-}
-}
+  if (locacionActual < locacionesImg.length - 1) {
+      locacionActual++;
+      locacion.style.opacity = 0; // Establece la opacidad a 0 (imagen invisible)
+      setTimeout(() => {
+          locacion.src = locacionesImg[locacionActual];
+          locacion.style.opacity = 1; // Establece la opacidad a 1 (imagen visible)
+          actualizarIndicadores();
+      }, 200); // Espera 500 ms antes de cambiar la imagen (ajusta el tiempo según desees)
+  }
+};
 
 // Asigna las funciones a los eventos clic en los botones
 btnRetroceder.addEventListener('click', retrocederImg);
@@ -112,7 +130,7 @@ actualizarIndicadores();
 
 
 // BOTONES PARA CAMBIAR EQUIPO
-let equipoFijado = 0;
+let equipoFijado = 1;
 
 const btnEquipoUno = document.querySelector('#equipo-1');
 const btnEquipoDos = document.querySelector('#equipo-2');
@@ -121,148 +139,119 @@ btnEquipoUno.addEventListener('click', cambiarEquipoUno);
 btnEquipoDos.addEventListener('click', cambiarEquipoDos);
 
 function cambiarEquipoUno() {
-  equipoFijado = 0;
-  actualizarEquipo();
-}
-function cambiarEquipoDos() {
   equipoFijado = 1;
   actualizarEquipo();
 }
-
-//Obtener el contenedor donde se agregarán los personajes
-const contenedorPersonajes = document.getElementById('contenedor-personajes');
+function cambiarEquipoDos() {
+  equipoFijado = 2;
+  actualizarEquipo();
+}
 
 // Función para actualizar el equipo en la interfaz
 function actualizarEquipo() {
+  // Obtener el contenedor donde se agregarán los personajes
+  const contenedorPersonajes = document.getElementById('contenedor-personajes');
+
   // Borrar los personajes existentes en la interfaz
   contenedorPersonajes.innerHTML = '';
 
-  // Obtiene el equipo actual
-  const equipoActual = personajeList[equipoFijado];
+  // Filtrar el equipo que corresponde al valor de 'equipoFijado'
+  const equipoActual = personajeList.filter(personaje => personaje.equipo === equipoFijado);
 
-  // Verificar que equipoActual sea un array antes de intetar iterar
-  if (Array.isArray(equipoActual)) {
-   // AGREGAR CONTENIDO DE LOS ARRAYS AL HTML
-  
-  // Iterar a través de la lista de personajes y crear elementos para cada uno
+  // Iterar a través de la lista de personajes filtrados y crear elementos para mostrarlos
   for (const personaje of equipoActual) {
     const personajeDiv = document.createElement('div');
     personajeDiv.classList.add('personaje');
 
-    // Elementos para la imagen del personaje
-    const imgDiv = document.createElement('div');
-    imgDiv.classList.add('img');
+      // Elementos para la imagen del personaje
+      const imgDiv = document.createElement('div');
+      imgDiv.classList.add('img');
 
-    const img = document.createElement('img');
-    img.setAttribute('src', personaje.foto);
-    img. setAttribute('alt', 'Imagen de personaje');
+      const img = document.createElement('img');
+      img.setAttribute('src', personaje.foto);
+      img. setAttribute('alt', 'Imagen de personaje');
 
-    imgDiv.appendChild(img);
+      imgDiv.appendChild(img);
 
-    // Elementos del HUD del personaje
-    const hudDiv = document.createElement('div');
-    hudDiv.classList.add('personaje__hud');
+      // Elementos del HUD del personaje
+      const hudDiv = document.createElement('div');
+      hudDiv.classList.add('personaje__hud');
 
-    const contenedorHudDiv = document.createElement('div');
-    contenedorHudDiv.classList.add('contenedor__hud');
+      const contenedorHudDiv = document.createElement('div');
+      contenedorHudDiv.classList.add('contenedor__hud');
 
-    const nivelDiv = document.createElement('div');
-    nivelDiv.classList.add('nivel');
-    nivelDiv.innerHTML = `<p>${personaje.nivel}</p>`;
+      const nivelDiv = document.createElement('div');
+      nivelDiv.classList.add('nivel');
+      nivelDiv.innerHTML = `<p>${personaje.nivel}</p>`;
 
-    const vidaContenedorDiv = document.createElement('div');
-    vidaContenedorDiv.classList.add('vida__contenedor');
+      const vidaContenedorDiv = document.createElement('div');
+      vidaContenedorDiv.classList.add('vida__contenedor');
 
-    const vidaSpan = document.createElement('span');
-    vidaSpan.classList.add('vida');
-    vidaSpan.textContent = `${personaje.salud}/20`;
+      const vidaSpan = document.createElement('span');
+      vidaSpan.classList.add('vida');
+      vidaSpan.textContent = `${personaje.salud}/20`;
 
-    // Calcular el ancho de la barra de vida
-    const valorMaximoVida = 20;
-    const anchoBarra = (personaje.salud / valorMaximoVida) * 100 + '%';
-    vidaSpan.style.width = anchoBarra;
+      // Calcular el ancho de la barra de vida
+      const valorMaximoVida = 20;
+      const anchoBarra = (personaje.salud / valorMaximoVida) * 100 + '%';
+      vidaSpan.style.width = anchoBarra;
 
-    // Agregar elementos a sus padres
-    hudDiv.appendChild(contenedorHudDiv);
-    contenedorHudDiv.appendChild(nivelDiv);
-    contenedorHudDiv.appendChild(vidaContenedorDiv);
-    vidaContenedorDiv.appendChild(vidaSpan);
+      // Agregar elementos a sus padres
+      hudDiv.appendChild(contenedorHudDiv);
+      contenedorHudDiv.appendChild(nivelDiv);
+      contenedorHudDiv.appendChild(vidaContenedorDiv);
+      vidaContenedorDiv.appendChild(vidaSpan);
 
-    // Nombre del personaje
-    const nombreDiv = document.createElement('div');
-    nombreDiv.classList.add('nombre__personaje');
+      // Nombre del personaje
+      const nombreDiv = document.createElement('div');
+      nombreDiv.classList.add('nombre__personaje');
 
-    const nombreH2 = document.createElement('h2');
-    nombreH2.textContent = personaje.nombre;
+      const nombreH2 = document.createElement('h2');
+      nombreH2.textContent = personaje.nombre;
 
-    hudDiv.appendChild(nombreDiv);
-    nombreDiv.appendChild(nombreH2);
+      hudDiv.appendChild(nombreDiv);
+      nombreDiv.appendChild(nombreH2);
 
-    // Raza del personaje
-    const razaH3 = document.createElement('h3');
-    razaH3.textContent = personaje.raza;
+      // Raza y clase del personaje
+      const razaH3 = document.createElement('h3');
+      razaH3.textContent = personaje.raza + ' ' + personaje.clase;
 
-    nombreDiv.appendChild(razaH3);
+      nombreDiv.appendChild(razaH3);
+
 
     // Elementos de Habilidades
     const habilidadesDiv = document.createElement('div');
     habilidadesDiv.classList.add('habilidades');
 
-    // Iterar a través de la lista de habilidad y crear elementos para cada uno
-    for(const habilidad in personaje.habilidades) {
+    // Itera a través de las habilidades del personaje
+    for (const habilidad in personaje) {
+      // Verifica si la propiedad es una habilidad (para evitar otras propiedades no deseadas)
+      if (habilidad !== 'equipo' && habilidad !== 'nivel' && habilidad !== 'foto' && habilidad !== 'nombre' && habilidad !== 'salud' && habilidad !== 'raza' && habilidad !== 'clase') {
         const columnaDiv = document.createElement('div');
-        columnaDiv.id = habilidad;
         columnaDiv.classList.add('columna');
+        columnaDiv.id = habilidad; // Asigna el ID de la habilidad como se muestra en tu estructura HTML
 
         const iconDiv = document.createElement('div');
         iconDiv.classList.add('icon');
-
-        // Obtén el icono correspondiente de acuerdo a la habilidad
         iconDiv.textContent = iconosHabilidades[habilidad];
 
         const valorDiv = document.createElement('div');
         valorDiv.classList.add('valor');
-        // valorDiv.textContent = personaje.habilidades[habilidad];
-        valorDiv.innerHTML = `<p>${personaje.habilidades[habilidad]}</p>`;
+        valorDiv.innerHTML = `<p>${personaje[habilidad]}</p>`;
 
         columnaDiv.appendChild(iconDiv);
         columnaDiv.appendChild(valorDiv);
         habilidadesDiv.appendChild(columnaDiv);
-    }
-    // Agregar todos los elementos al div del personaje
-    personajeDiv.appendChild(imgDiv);
-    personajeDiv.appendChild(hudDiv);
-    personajeDiv.appendChild(habilidadesDiv);
+      }
+    };
 
-    // Agregar el div del personaje al contenedor principal
-    contenedorPersonajes.appendChild(personajeDiv);
-  }
-} else {
-  // Si equipoActual no es un array, muestra un mensaje de error o realiza alguna otra acción apropiada.
-  console.error('El equipo actual no es un array válido:', equipoActual);
-} 
+      // Agregar todos los elementos al div del personaje
+      personajeDiv.appendChild(imgDiv);
+      personajeDiv.appendChild(hudDiv);
+      personajeDiv.appendChild(habilidadesDiv);
+
+      // Agregar el div del personaje al contenedor principal
+      contenedorPersonajes.appendChild(personajeDiv);
+    };
 };
 actualizarEquipo();
-
-// Función para realizar la solicitud al servidor y obtener datos de Notion
-async function obtenerDatosDeNotion() {
-  console.log('Solicitud a Notion en proceso...')
-  try {
-    const response = await fetch('/notion-data'); // Ruta para obtener datos del servidor
-    if (!response.ok) {
-      throw new Error('No se pudo obtener la respuesta del servidor.');
-    }
-    const data = await response.json();
-
-    // Actualiza personajeList con los datos recibidos
-    personajeList = data;
-
-    // Llama a la función para actualizar la interfaz con los nuevos datos
-    actualizarEquipo();
-  } catch (error) {
-    console.error('Error al obtener datos de Notion:', error);
-  }
-}
-
-// Llamar a la función para obtener datos de Notion cuando sea necesario
-obtenerDatosDeNotion();

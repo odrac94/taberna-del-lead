@@ -19,6 +19,11 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Ruta para server data.json
+app.get('/data.json', (req, res) => {
+  res.sendFile(path.join(__dirname, 'data.json'));
+});
+
 // Ruta para obtener los datos de Notion y guardarlos en un archivo JSON
 app.get('/notion-data', async (req, res) => {
   try {
@@ -27,7 +32,6 @@ app.get('/notion-data', async (req, res) => {
 
     // Filtra y estructura los datos que deseas
     const filteredData = results.map((item) => {
-
     // console.log('raza', item.properties.raza);
 
       const properties = item.properties || {}; // Comprueba si properties existe
@@ -46,14 +50,19 @@ app.get('/notion-data', async (req, res) => {
         carisma: properties.carisma?.number || null,
       };
     });
-
-    // Guarda los datos filtrados en un archivo JSON
-    fs.writeFileSync('data.json', JSON.stringify(filteredData, null, 2));
-    res.json({ message: 'Datos de Notion filtrados y guardados en data.json' });
-  } catch (error) {
-    console.error('Error al obtener datos de Notion:', error);
-    res.status(500).json({ error: 'Error al obtener datos de Notion' });
-  }
+    // Verifica si filteredData es un array antes de enviarlo
+    if (Array.isArray(filteredData)) {
+      // Guarda los datos filtrados en un archivo JSON
+      fs.writeFileSync('data.json', JSON.stringify(filteredData, null, 2));
+      res.json({ message: 'Datos de Notion filtrados y guardados en data.json' });
+      } else {
+        console.error('Los datos filtrados no son un array válido:', filteredData);
+        res.status(500).json({ error: 'Los datos filtrados no son un array válido' });
+      }
+    } catch (error) {
+      console.error('Error al obtener datos de Notion:', error);
+      res.status(500).json({ error: 'Error al obtener datos de Notion' });
+    }
 });
 
 // Inicia el servidor
